@@ -1,0 +1,281 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+.no-scroll {
+    overflow: hidden;
+}
+.header {
+    height: 3rem;
+    background-color: black;
+    display: flex;
+}
+.header .header__auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header .header__main {
+    font-size: 30px;
+    text-decoration: none;
+}
+.wrapper {
+    padding: 0 10px;
+    max-width: 768px;
+    margin: auto;
+}
+.wrapper.wrapper_head {
+    width: 100%;
+    display: flex;
+    color: white;
+    justify-content: space-between;
+}
+.wrapper.wrapper_head a {
+    color: white;
+}
+.task-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: -8px; /* Adjustment for the gutter */
+    width: 100%;
+}
+
+.task-wrapper .task {
+    transition: all .3s ease;
+    position: relative;
+    flex: auto;
+    height: max-content;
+    width: 100%;
+    margin: 0 8px 8px 0; /* Some gutter */
+    padding: 15px;
+}
+.task-wrapper .task .task__title {
+    font-size: 18px;
+    font-weight: bold;
+}
+.task-wrapper .task .task__title span{
+    font-size: 14px;
+    font-weight: normal;
+}
+.task-wrapper .task .task__text {
+    margin-top: 1rem;
+}
+.task-wrapper .task:not(.completed) .task__title::before {
+    margin-right: 1rem;
+    content: "\2718";
+    color: orangered;
+}
+.task-wrapper .task.completed .task__title::before {
+    margin-right: 1rem;
+    content: "\2714";
+    color: limegreen;
+}
+.task-wrapper .task.edited .task__title::after {
+    content: " (изменено)";
+    font-size: 14px;
+    font-weight: normal;
+    color: #cacaca;
+}
+.task-wrapper .task.editable {
+    width: 100%;
+}
+.task-wrapper .task textarea {
+    width: 100%;
+    max-width: 100%;
+    min-width: 200px;
+    max-height: 300px;
+    min-height: 300px;
+    margin-top: 1rem;
+}
+.task-wrapper .task form {
+    /*display: none;*/
+}
+.task-wrapper .task.editable form {
+    display: initial;
+}
+.task-wrapper .task.editable div {
+    display: none;
+}
+.wrapper .task-wrapper .task:hover {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.04);
+}
+
+.task-wrapper .task .task__edit {
+    transition: all .3s ease;
+    cursor: pointer;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 20px;
+    height: 20px;
+
+}
+.task-wrapper .task .task__edit::before {
+    content: "\270E";
+}
+.task-wrapper .task.editable .task__edit::before {
+    content: "\2716";
+}
+.task-wrapper .task .task__edit:hover, .task .task__edit:active {
+    transform: scale(1.4);
+}
+.task-wrapper .task label:not(:first-child) {
+    margin-top: 1rem;
+}
+form.task {
+    display: flex;
+    flex-direction: column;
+}
+.add-task {
+    display: flex;
+    flex-wrap: wrap;
+}
+.add-task label {
+    width: 100%;
+}
+.add-task label:not(:first-child) {
+    margin-top: 1rem;
+}
+.add-task label.textarea span {
+    width: 100%;
+}
+.add-task label.textarea {
+    display: flex;
+    flex-wrap: wrap;
+}
+.add-task label.textarea textarea {
+    width: 100%;
+    min-height: 300px;
+    max-height: 300px;
+    min-width: 50%;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+.auth-form > *:not(:first-child) {
+    margin-top: 1rem;
+}
+.auth-form .error {
+    text-align: center;
+}
+.modal-c {
+    transition: all .3s ease;
+    display: flex;
+    pointer-events: none;
+    opacity: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    background: rgba(0,0,0, 0.2);
+    justify-content: center;
+    align-items: center;
+}
+.modal-c.opened {
+    pointer-events: auto;
+    opacity: 1;
+}
+.modal-c .modal__canvas {
+    box-shadow: 0 25px 50px rgba(0,0,0, 0.2);
+    transform: scale(0.7);
+    transition: all .3s ease;
+    width: max-content;
+    max-width: 600px;
+    height: max-content;
+    min-height: 100px;
+    background: white;
+    display: flex;
+    position: relative;
+}
+.modal-c.opened .modal__canvas {
+    transform: scale(1)
+}
+.modal-c .modal__content {
+    width: 100%;
+    margin: 25px 50px;
+    max-width: calc(100% - 100px)
+}
+
+.modal-c .modal__close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.modal-c .modal__close::before {
+    content: "\2716";
+}
+
+.pagination-wrap {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.pagination-wrap > div {
+    transition: all .3s ease;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    background: #fafafa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pagination-wrap > div.active, .pagination-wrap > div:hover {
+    background-color: #e0e0e0;
+}
+.pagination-wrap > div:not(:first-child){
+    margin-left: 0.5rem;
+}
+
+.pagination-wrap a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    width: 100%;
+}
+.pagination-wrap a:hover {
+    text-decoration: none;
+}
+.error {
+    width: 100%;
+    color: orangered;
+}
+.success {
+    width: 100%;
+    color: limegreen;
+}
+
+form button {
+    margin-top: 1rem;
+    max-width: 100px;
+}
+.modal-edit {
+    width: 500px;
+}
+.modal-edit h1 {
+    margin-top: 0;
+}
+.modal-edit .task {
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 600px) {
+    .modal-edit {
+        width: 200px;
+    }
+}
+select.sorted {
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
