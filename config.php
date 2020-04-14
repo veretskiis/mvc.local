@@ -13,7 +13,6 @@ class Config
 
     public static function init()
     {
-
         require_once('core\controller\controller.php');
         require_once('core\route\route.php');
         require_once('core\smarty\Smarty.class.php');
